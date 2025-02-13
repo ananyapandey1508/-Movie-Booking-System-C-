@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Movie {
+    string name;
+    int seatsAvailable;
+};
+
+void bookTicket(Movie &movie) {
+    if (movie.seatsAvailable > 0) {
+        movie.seatsAvailable--;
+        cout << "Booking successful for movie: " << movie.name << endl;
+        cout << "Seats left: " << movie.seatsAvailable << endl;
+    } else {
+        cout << "Sorry, no seats available for " << movie.name << endl;
+    }
+}
+
+int main() {
+    Movie movies[2] = {{"Avengers", 5}, {"Inception", 3}};
+
+    int choice;
+    cout << "Available movies:\n";
+    for (int i = 0; i < 2; i++) {
+        cout << i + 1 << ". " << movies[i].name << " (" << movies[i].seatsAvailable << " seats available)" << endl;
+    }
+
+    cout << "Select a movie (1 or 2): ";
+    cin >> choice;
+
+    if (choice == 1 || choice == 2) {
+        bookTicket(movies[choice - 1]);
+    } else {
+        cout << "Invalid choice!" << endl;
+    }
+
+    return 0;
+}
